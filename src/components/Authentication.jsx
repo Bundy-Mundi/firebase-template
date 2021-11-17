@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { writeUserData } from "../firebase";
+import { writeUserData, signUpCustom, signInCustom } from "../firebase";
 const SIGNIN = "signin";
 const SIGNUP = "signup";
 const Authentication = () => {
@@ -9,10 +9,11 @@ const Authentication = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(authMode === SIGNIN){
-
+            signInCustom(email, pass);
         }
         if(authMode === SIGNUP){
-            writeUserData("Ananymous", email, "/");
+            signUpCustom(email, pass);
+            // writeUserData("Ananymous", email, "/");
         }
     }
     const handleAuthToggle = (e) => {

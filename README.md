@@ -1,4 +1,4 @@
-# Fireabse with React
+# Firebase with React
 
 ## Create a web-app without configuring backend
 

@@ -18,8 +18,8 @@ const AddChatRealTime = () => {
             <ul>
                 {
                     Object.keys(chats).map((v,k)=>{
-                        return <li>{chats[v].message}</li>
-                })
+                        return <li key={k}>{chats[v].message}</li>
+                    })
                 }
             </ul>
         </div>
