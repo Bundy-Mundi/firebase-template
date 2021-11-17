@@ -5,7 +5,8 @@ const Authentication = () => {
     const [authMode, setAuthMode] = useState(SIGNIN);
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         if(authMode === SIGNIN){
 
         }
@@ -13,7 +14,8 @@ const Authentication = () => {
 
         }
     }
-    const handleAuthToggle = () => {
+    const handleAuthToggle = (e) => {
+        e.preventDefault();
         if(authMode === SIGNIN){
             setAuthMode(SIGNUP);
         }
@@ -26,9 +28,13 @@ const Authentication = () => {
             <form>
                 <input id="email" value={email} onChange={e=>setEmail(e.target.value)} type="email" placeholder="Email" />
                 <input id="password" value={pass} onChange={e=>setPass(e.target.value)} type="password" placeholder="Password" />
-                <p onClick={handleAuthToggle}>Toggle</p>
+                <button onClick={handleAuthToggle}>
+                    {authMode}
+                </button>
                 <button onSubmit={handleSubmit}>Submit</button>
             </form>
         </div>
     )
 }
+
+export default Authentication;
