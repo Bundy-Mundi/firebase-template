@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getDatabase, ref, set, push, onValue } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
@@ -44,5 +45,29 @@ export const signInCustom = async(email, password) => {
             const errorMessage = error.message;
             console.log(errorCode, errorMessage)
         });
+}
+
+// Realtime Database
+const realtime_db = getDatabase(app);
+export const writeUserData = (name, email, imageUrl) => {
+  const newUserRef = ref(realtime_db, 'users/');
+  set(newUserRef, {
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+  });
+}
+export const writeChatData = (message) => {
+  const newChatRef = push(ref(realtime_db, 'chats/'));
+  set(newChatRef, {
+    message
+  });
+}
+export const listenTo = (path, updateCallback) => {
+  const allRef = ref(realtime_db, path);
+  onValue(allRef, (snapshot) => {
+    const data = snapshot.val();
+    updateCallback(data);
+  });
 }
 

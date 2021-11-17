@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { writeUserData } from "../firebase";
 const SIGNIN = "signin";
 const SIGNUP = "signup";
 const Authentication = () => {
@@ -11,7 +12,7 @@ const Authentication = () => {
 
         }
         if(authMode === SIGNUP){
-
+            writeUserData("Ananymous", email, "/");
         }
     }
     const handleAuthToggle = (e) => {
@@ -25,13 +26,13 @@ const Authentication = () => {
     }
     return(
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input id="email" value={email} onChange={e=>setEmail(e.target.value)} type="email" placeholder="Email" />
                 <input id="password" value={pass} onChange={e=>setPass(e.target.value)} type="password" placeholder="Password" />
                 <button onClick={handleAuthToggle}>
                     {authMode}
                 </button>
-                <button onSubmit={handleSubmit}>Submit</button>
+                <button>Submit</button>
             </form>
         </div>
     )
