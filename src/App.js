@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
+import { getChats } from "./firebase";
 
 function App() {
+  const [chats, setChats] = useState([]);
+  useEffect(async()=>{
+    const chats = await getChats();
+    setChats(chats);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {
+        chats ? 
+        <>
+          <p>FireStore successfully connected</p>
+          <div>{JSON.stringify(chats)}</div>
+        </>
+          :
+        <>
+          <p>Data loading failed</p>
+        </>
+      }
     </div>
   );
 }
