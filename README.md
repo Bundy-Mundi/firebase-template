@@ -1,7 +1,17 @@
 # Firebase with React
 
-## Create a web-app without configuring backend
+## Purpose of this project
 
-## Use the Realtime Database that Firebase provides
+- To create a template that I can boot up fast for hackathon or demo applications
 
-## Build quick authenication system with Firebase Authentication
+- To create a web-app without configuring backend
+
+- To Use the Realtime Database that Firebase provides
+
+- To Build quick authenication system with Firebase Authentication
+
+## To do
+
+- [] Test Google sign in / up
+- [] Add Redux or persistent state-management library
+
