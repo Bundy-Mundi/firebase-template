@@ -70,6 +70,22 @@ export const signInCustom = async(email, password) => {
     console.log(userCredential)
     // Do something with userCredential ...
 }
+export const authState = () => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+}
+export const getCurrentUser = () => {
+  return auth.currentUser;
+}
 
 // Realtime Database
 const realtime_db = getDatabase(app);
