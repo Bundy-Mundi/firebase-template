@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, push, onValue } from "firebase/database";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -29,7 +29,7 @@ export const getChats = async() => {
 }
 
 // Authentication
-const auth = getAuth();
+export const auth = getAuth();
 export const signUpCustom = async(email, password) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)
           .catch((error) => {
@@ -65,27 +65,17 @@ export const signInCustom = async(email, password) => {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode, errorMessage)
+            console.log(errorCode, errorMessage);
         });
     console.log(userCredential)
-    // Do something with userCredential ...
+    // Do something with userCredential if you want to
 }
-export const authState = () => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      // ...
-    } else {
-      // User is signed out
-      // ...
-    }
-  });
+export const signOutCustom = async() => {
+  await signOut(auth)
+    .catch(err => console.log(err));
 }
-export const getCurrentUser = () => {
-  return auth.currentUser;
-}
+
+export const getCurrentUser = () => auth.currentUser;
 
 // Realtime Database
 const realtime_db = getDatabase(app);
