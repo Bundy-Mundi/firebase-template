@@ -2,7 +2,7 @@
 //import { getChats } from "./firebase";
 import Authentication from './components/Authentication';
 import AddChatRealTime from './components/AddChatRealTime';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function App() {
   //const count = useSelector((state) => state.counter.value);
