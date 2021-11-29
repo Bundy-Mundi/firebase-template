@@ -5,9 +5,8 @@ import AddChatRealTime from './components/AddChatRealTime';
 import { useSelector } from 'react-redux';
 
 function App() {
-  //const count = useSelector((state) => state.counter.value);
   const user = useSelector((state) => state.user);
-  console.log(user)
+  // console.log(user)
   return (
     <>
     <Authentication />
