@@ -1,7 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, push, onValue } from "firebase/database";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signOut} from "firebase/auth";
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -80,4 +84,3 @@ export const listenTo = (path, updateCallback) => {
     updateCallback(data);
   });
 }
-

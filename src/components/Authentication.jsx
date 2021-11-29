@@ -2,6 +2,7 @@ import { useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { signUpCustom, signInCustom, signOutCustom, auth } from "../firebase";
 import { useSelector, useDispatch } from 'react-redux';
+import { signInWithGoogle } from "../auth/auth_google";
 import {
     signInUser,
     signUpUser,
@@ -70,6 +71,9 @@ const Authentication = () => {
                     </button>
                     <button>Submit</button>
                 </form>
+                <div>
+                    <button onClick={signInWithGoogle}>Google</button>
+                </div>
                 </>
             }
         </div>

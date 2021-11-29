@@ -1,24 +1,11 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, getRedirectResult } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 
-const signInWithGoogle = async()=>{
-    const result = await signInWithPopup(auth, provider)
-        .catch(err => {
-            const errorCode = err.code;
-            const errorMessage = err.message;
-            // The email of the user's account used.
-            const email = err.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(err);
-            console.log(errorCode, errorMessage, email, credential);
-        });
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    
-    // Things to put in React-context dispatch
-    const token = credential.accessToken;
-    const user = result.user;
+export const signInWithGoogle = async()=>{
+    await signInWithRedirect(auth, provider)
+        .catch(err => console.log(err));
 }
 
 /*
